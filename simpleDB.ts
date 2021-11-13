@@ -8,7 +8,7 @@ export class simpleDB {
         return new simpleDB(filePath);
     }
 
-    constructor(filePath: string, initValue: any = {}) {
+    private constructor(filePath: string, initValue: any = {}) {
         this.fullPath = filePath;
         Json.create(filePath);
         this.data = Json.read(filePath);
