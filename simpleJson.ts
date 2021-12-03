@@ -45,7 +45,7 @@ export namespace simpleJson {
     export function write(filePath: string, value: any): void {
         //Not full path of .db.json (without filename)
         filePath += ".json";
-        fs.writeFileSync(filePath, JSON.stringify(value), "utf8");
+        fs.writeFileSync(filePath, JSON.stringify(value, null, 4), "utf8");
     }
     export function create(filePath: string, initValue: any = {} ) {
         //Not full path of .db.json (without filename)
@@ -57,7 +57,7 @@ export namespace simpleJson {
         const dir = fs.readdirSync(pathWithoutFilename);
         if (!dir.includes(file + ".json")) {
             //fs.closeSync(fs.openSync(filePath, "w"));
-            fs.writeFileSync(filePath, JSON.stringify(initValue));
+            fs.writeFileSync(filePath, JSON.stringify(initValue, null, 4));
         }
     }
 }
