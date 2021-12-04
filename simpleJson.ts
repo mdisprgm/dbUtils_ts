@@ -1,11 +1,11 @@
-import fs = require("fs");
+import * as fs from "fs";
+import * as path from "path";
 
 export namespace simpleJson {
     export function formatPath(fullPath: string) {
-        const idx = fullPath.lastIndexOf("/");
-        const path = fullPath.slice(0, idx + 1);
-        const filename = fullPath.substr(idx + 1, fullPath.length);
-        return { path: path, filename: filename };
+        const dirname =  path.dirname(fullPath);
+        const basename = path.basename(fullPath);
+        return { dirname: dirname, basename: basename };
     }
     export enum Initial {
         Object,
@@ -47,17 +47,21 @@ export namespace simpleJson {
         filePath += ".json";
         fs.writeFileSync(filePath, JSON.stringify(value, null, 4), "utf8");
     }
-    export function create(filePath: string, initValue: any = {} ) {
+    export function create(filePath: string, initValue: any = {}): boolean {
         //Not full path of .db.json (without filename)
         let init: any = {};
-        const formattedPath = formatPath(filePath);
-        const pathWithoutFilename = formattedPath.path;
-        const file = formattedPath.filename;
+        const path_ = formatPath(filePath);
+        const dirname = path_.dirname;
+        const basename = path_.basename;
+
         if (initValue === Initial.List) init = [];
-        const dir = fs.readdirSync(pathWithoutFilename);
-        if (!dir.includes(file + ".json")) {
+        const dir = fs.readdirSync(dirname);
+        if (!dir.includes(basename + ".json")) {
             //fs.closeSync(fs.openSync(filePath, "w"));
             fs.writeFileSync(filePath, JSON.stringify(initValue, null, 4));
+            return true;
         }
+        //already exists
+        return false;
     }
 }
