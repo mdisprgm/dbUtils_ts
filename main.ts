@@ -10,6 +10,6 @@ try {
         fs.mkdirSync(DATA_DIR);
     }
 } catch (err) {
-    console.log(`Error while making directory > ${DATA_DIR} :`, err);
+    console.log(new Error(`while making directory >> ${DATA_DIR} : ` + err));
     process.exit(1);
 }
