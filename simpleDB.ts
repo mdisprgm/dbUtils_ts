@@ -1,11 +1,11 @@
-import { simpleJson as Json } from "./simpleJson";
+import { SipmleJson as Json } from "./simpleJson";
 
-export class simpleDB {
+export class SimpleDB {
     private fullPath: string;
     data: any;
 
     static New(filePath: string, initValue: any = {}) {
-        return new simpleDB(filePath, initValue);
+        return new SimpleDB(filePath, initValue);
     }
 
     private constructor(filePath: string, initValue: any = {}) {

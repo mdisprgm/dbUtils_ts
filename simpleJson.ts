@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 
-export namespace simpleJson {
+export namespace SipmleJson {
     const FILE_EXT = ".json";
 
     export function formatPath(fullPath: string) {
