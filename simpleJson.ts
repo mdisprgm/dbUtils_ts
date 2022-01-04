@@ -70,8 +70,8 @@ export namespace SipmleJson {
         const dirname = pth.dirname;
         const basename = pth.basename + FILE_EXT;
 
-        let init: any = {};
-        if (initValue === Initial.List) init = [];
+        if (initValue === Initial.Object) initValue = {};
+        else if (initValue === Initial.List) initValue = [];
 
         const dir = fs.readdirSync(dirname);
         if (!dir.includes(basename)) {
