@@ -68,7 +68,7 @@ export namespace SipmleJson {
 
         const pth = formatPath(filepath);
         const dirname = pth.dirname;
-        const basename = pth.basename + FILE_EXT;
+        const basename = pth.basename;
 
         if (initValue === Initial.Object) initValue = {};
         else if (initValue === Initial.List) initValue = [];
