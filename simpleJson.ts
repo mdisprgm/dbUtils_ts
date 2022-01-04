@@ -2,15 +2,20 @@ import * as fs from "fs";
 import * as path from "path";
 
 export namespace simpleJson {
+    const FILE_EXT = ".json";
+
     export function formatPath(fullPath: string) {
-        const dirname =  path.dirname(fullPath);
+        const dirname = path.dirname(fullPath);
         const basename = path.basename(fullPath);
-        return { dirname: dirname, basename: basename };
+        const ext = path.extname(fullPath);
+        return { dirname: dirname, basename: basename, ext: ext };
     }
+
     export enum Initial {
         Object,
         List,
     }
+
     export function read(filePath: string) {
         filePath += ".json";
         //Not full path of .db.json (without filename)
@@ -24,7 +29,7 @@ export namespace simpleJson {
                 if (err) {
                     //JSON을 분석할 수 없음
                     console.log(
-                        "[JSON] Can't parse the json. it seems has incorrect json format. :" +
+                        "[JSON] Can't parse the JSON-string. it seems has incorrect json format. :" +
                             filePath +
                             ".json"
                     );
@@ -33,7 +38,7 @@ export namespace simpleJson {
                     else {
                         //비어있지 않으면 길이에 따라서 값을 출력함
                         console.log(
-                            "[JSON] it's failed to fix the problem automatically. the file is not empty :",
+                            "[JSON] It's failed to fix the problem automatically. the file is not empty :",
                             rf.length > 20 ? "TOO LONG!!".red : rf
                         );
                     }
@@ -42,23 +47,35 @@ export namespace simpleJson {
             }
         }
     }
-    export function write(filePath: string, value: any): void {
-        //Not full path of .db.json (without filename)
-        filePath += ".json";
-        fs.writeFileSync(filePath, JSON.stringify(value, null, 4), "utf8");
-    }
-    export function create(filePath: string, initValue: any = {}): boolean {
-        //Not full path of .db.json (without filename)
-        let init: any = {};
-        const path_ = formatPath(filePath);
-        const dirname = path_.dirname;
-        const basename = path_.basename;
 
+    export function write(filename: string, value: any): void {
+        filename += FILE_EXT;
+        fs.writeFileSync(filename, JSON.stringify(value, null, 4), "utf8");
+    }
+
+    //** filepath === C:/Users/daniel/example.db (by GetDataDir)
+    //** dirname === C:/Users/daniel
+    //** basename === example.db + ".json"
+
+    /**
+     *
+     * @param filepath path of file, but without FILE EXTENSION
+     * @param initValue value for init, { } or [ ]
+     * @returns whether the file was created successfully
+     */
+    export function create(filepath: string, initValue: any = {}): boolean {
+        filepath += FILE_EXT;
+
+        const pth = formatPath(filepath);
+        const dirname = pth.dirname;
+        const basename = pth.basename + FILE_EXT;
+
+        let init: any = {};
         if (initValue === Initial.List) init = [];
+
         const dir = fs.readdirSync(dirname);
-        if (!dir.includes(basename + ".json")) {
-            //fs.closeSync(fs.openSync(filePath, "w"));
-            fs.writeFileSync(filePath, JSON.stringify(initValue, null, 4));
+        if (!dir.includes(basename)) {
+            fs.writeFileSync(filepath, JSON.stringify(initValue, null, 4));
             return true;
         }
         //already exists
