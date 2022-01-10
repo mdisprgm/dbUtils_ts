@@ -10,6 +10,7 @@ export class SimpleDB {
     static readonly DATA_DIR = path.join(fsutil.projectPath, "scriptData");
 
     static New(filePath: string, initValue: any = {}) {
+        if (["/", "\\"].includes(filePath[filePath.length - 1])) throw new Error("Can't extract filename");
         return new SimpleDB(filePath, initValue);
     }
 
