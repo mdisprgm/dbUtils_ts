@@ -1,4 +1,4 @@
-import { fsmgmt } from "../hslib/modules/fsmgmt";
+import { fsmgmt } from "../scriptUtils/fsmgmt";
 import { fsutil } from "bdsx/fsutil";
 import path = require("path");
 
