@@ -6,7 +6,7 @@ import path = require("path");
 
 export class SimpleDB<T = any> {
     private fullPath: string;
-    data: any;
+    data: T;
 
     static readonly DATA_DIR = path.join(fsutil.projectPath, "data");
 
