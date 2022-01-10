@@ -8,7 +8,7 @@ export class SimpleDB {
     private fullPath: string;
     data: any;
 
-    static readonly DATA_DIR = path.join(fsutil.projectPath, "datas");
+    static readonly DATA_DIR = path.join(fsutil.projectPath, "data");
 
     static New(filePath: string, initValue: any = {}) {
         return new SimpleDB(filePath, initValue);
