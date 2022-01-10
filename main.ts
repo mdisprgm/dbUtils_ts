@@ -1,15 +1,16 @@
-import fs = require("fs");
-const DATA_DIR = "../data";
-export function GetDataDir(filepath: string) {
-    return DATA_DIR + "/" + filepath;
-}
+import { fsmgmt } from "../hslib/modules/fsmgmt";
+import { fsutil } from "bdsx/fsutil";
+import path = require("path");
 
-try {
-    const dataDirExists = fs.existsSync(DATA_DIR);
-    if (!dataDirExists) {
-        fs.mkdirSync(DATA_DIR);
-    }
-} catch (err) {
-    console.log(new Error(`while making directory >> ${DATA_DIR} : ` + err));
-    process.exit(1);
+const DATA_DIR = path.join(fsutil.projectPath, "data");
+fsmgmt.mkdirRecursiveSync(DATA_DIR, new Set<string>([fsutil.projectPath]));
+
+export function GetDataDir(filepath: string) {
+    const dirhas = new Set<string>([DATA_DIR]);
+    fsmgmt.mkdirRecursiveSync(
+        path.join(DATA_DIR, path.dirname(filepath)),
+        dirhas
+    );
+
+    return path.join(DATA_DIR, filepath);
 }
