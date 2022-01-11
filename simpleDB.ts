@@ -37,7 +37,7 @@ export class SimpleDB<T = any> {
         );
     }
 
-    private constructor(filePath: string, initValue: any = {}) {
+    protected constructor(filePath: string, initValue: any = {}) {
         this.fullPath = filePath;
         Json.create(filePath, initValue);
         this.data = Json.read(filePath);
