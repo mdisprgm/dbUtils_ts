@@ -25,6 +25,13 @@ export class SimpleDB<T = any> {
         return path.join(this.DATA_DIR, filepath);
     }
 
+    static prepare() {
+        fsmgmt.mkdirRecursiveSync(
+            SimpleDB.DATA_DIR,
+            new Set<string>([fsutil.projectPath])
+        );
+    }
+
     private constructor(filePath: string, initValue: any = {}) {
         this.fullPath = filePath;
         Json.create(filePath, initValue);
@@ -38,7 +45,4 @@ export class SimpleDB<T = any> {
     }
 }
 
-fsmgmt.mkdirRecursiveSync(
-    SimpleDB.DATA_DIR,
-    new Set<string>([fsutil.projectPath])
-);
+SimpleDB.prepare();
