@@ -43,7 +43,7 @@ export class SimpleDB<T = any> {
         Json.create(filePath, initValue);
         this.data = Json.read(filePath);
     }
-    write(value: any) {
+    write(value: T) {
         Json.write(this.fullPath, value);
     }
     update() {
