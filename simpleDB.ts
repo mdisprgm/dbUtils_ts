@@ -13,7 +13,7 @@ interface Class {
 }
 
 export class SimpleDB<T = any> {
-    private fullPath: string;
+    protected fullPath: string;
     data: T;
 
     static readonly DATA_DIR = path.join(fsutil.projectPath, DATA_PATH);
@@ -39,14 +39,17 @@ export class SimpleDB<T = any> {
         Json.create(filePath, initValue);
         this.data = Json.read(filePath);
     }
-    /** changes {@link data} also, forcibly */
+
+    /** Changes {@link data} also, forcibly */
     write(value: T): void {
         this.data = value;
         Json.write(this.fullPath, value);
     }
+
     update(): void {
         this.write(this.data);
     }
+
     setPrototypes(baseClass: Class): void {
         if (Array.isArray(this.data)) {
             for (const elm of this.data) {
