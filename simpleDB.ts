@@ -53,10 +53,10 @@ export class SimpleDB<T = any> {
     setPrototypes(baseClass: Class): void {
         if (Array.isArray(this.data)) {
             for (const elm of this.data) {
-                if (elm instanceof baseClass) Object.setPrototypeOf(elm, baseClass.prototype);
+                Object.setPrototypeOf(elm, baseClass.prototype);
             }
         } else {
-            if (this.data instanceof baseClass) Object.setPrototypeOf(this.data, baseClass.prototype);
+            Object.setPrototypeOf(this.data, baseClass.prototype);
         }
     }
 }
