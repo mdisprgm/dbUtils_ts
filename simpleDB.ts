@@ -5,8 +5,11 @@ import * as ini from "ini";
 import * as path from "path";
 import { SipmleJson as Json } from "./simpleJson";
 
-const fIni = fs.readFileSync("dbUtils/sub_path.ini", "utf8");
-const DATA_PATH = ini.parse(fIni)["path"];
+let DATA_PATH = "./data";
+try {
+    const fIni = fs.readFileSync("dbUtils/config.ini", "utf8");
+    DATA_PATH = ini.parse(fIni)["path"];
+} catch {}
 
 interface Class {
     new (...args: any[]): any;
