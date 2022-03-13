@@ -1,5 +1,5 @@
 {
-  "name": "dbutils",
+  "name": "@mclibs/dbutils",
   "version": "1.0.0",
   "description": "dbutils (for bdsx)",
   "main": "index.js",
