@@ -1,3 +1,4 @@
+import { red } from "colors";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -28,19 +29,12 @@ export namespace SipmleJson {
                 //실패하면
                 if (err) {
                     //JSON을 분석할 수 없음
-                    console.log(
-                        "[JSON] Can't parse the JSON-string. it seems has incorrect json format. :" +
-                            filePath +
-                            ".json"
-                    );
+                    console.log("[JSON] Can't parse the JSON-string. it seems has incorrect json format. :" + filePath + ".json");
                     console.log("[JSON] let me try fix it."); //파일이 비어있으면 빈 JSON을 씀
                     if (rf === "") fs.writeFileSync(filePath, "{}");
                     else {
                         //비어있지 않으면 길이에 따라서 값을 출력함
-                        console.log(
-                            "[JSON] It's failed to fix the problem automatically. the file is not empty :",
-                            rf.length > 20 ? "TOO LONG!!".red : rf
-                        );
+                        console.log("[JSON] It's failed to fix the problem automatically. the file is not empty :", rf.length > 20 ? red("TOO LONG!!") : rf);
                     }
                     return;
                 }
