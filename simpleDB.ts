@@ -1,6 +1,6 @@
 import { fsutil } from "bdsx/fsutil";
 import * as fs from "fs";
-import { fsmgmt } from "hslib/modules/fsmgmt";
+import { fsmgmt } from "hslib";
 import * as ini from "ini";
 import * as path from "path";
 import { SipmleJson as Json } from "./simpleJson";
