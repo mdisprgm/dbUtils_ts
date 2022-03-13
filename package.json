@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/mdisprgm/dbUtils_ts#readme",
   "dependencies": {
+    "@mclibs/dbutils": "^1.0.2",
     "@mclibs/hslib": "^1.0.1",
     "colors": "^1.4.0",
     "ini": "^2.0.0"
