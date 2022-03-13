@@ -1,10 +1,9 @@
 import { fsutil } from "bdsx/fsutil";
-import { fsmgmt } from "../scriptUtils/fsmgmt";
+import * as fs from "fs";
+import { fsmgmt } from "hslib/modules/fsmgmt";
+import * as ini from "ini";
+import * as path from "path";
 import { SipmleJson as Json } from "./simpleJson";
-
-import path = require("path");
-import fs = require("fs");
-import ini = require("ini");
 
 const fIni = fs.readFileSync("dbUtils/sub_path.ini", "utf8");
 const DATA_PATH = ini.parse(fIni)["path"];
