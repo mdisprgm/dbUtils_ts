@@ -1,7 +1,7 @@
 {
   "name": "@mclibs/dbutils",
-  "version": "1.0.4",
-  "description": "dbutils (for bdsx)",
+  "version": "1.0.5",
+  "description": "personal library for bdsx, dbutils",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
