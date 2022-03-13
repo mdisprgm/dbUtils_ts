@@ -1,6 +1,6 @@
 {
-  "name": "dbutils",
-  "version": "1.0.0",
+  "name": "@mclibs/dbutils",
+  "version": "1.0.2",
   "description": "dbutils (for bdsx)",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/mdisprgm/dbUtils_ts#readme",
   "dependencies": {
+    "@mclibs/hslib": "^1.0.1",
+    "colors": "^1.4.0",
     "ini": "^2.0.0"
   },
   "devDependencies": {
