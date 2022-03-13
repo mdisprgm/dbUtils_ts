@@ -1,6 +1,6 @@
 {
   "name": "@mclibs/dbutils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "dbutils (for bdsx)",
   "main": "index.js",
   "scripts": {
