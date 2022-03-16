@@ -1,4 +1,4 @@
-import { fsmgmt } from "@mclibs/hslib";
+import { fsmgmt } from "@mcbelibs/hslib/modules/fsmgmt";
 import { fsutil } from "bdsx/fsutil";
 import * as fs from "fs";
 import * as ini from "ini";
