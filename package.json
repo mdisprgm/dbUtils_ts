@@ -1,6 +1,6 @@
 {
   "name": "@mcbelibs/dbutils",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "personal library for bdsx, dbutils",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/mdisprgm/dbUtils_ts#readme",
   "dependencies": {
-    "@mcbelibs/hslib": "^1.0.2",
+    "@mcbelibs/hslib": "^1.0.5",
     "colors": "^1.4.0",
     "ini": "^2.0.0"
   },
