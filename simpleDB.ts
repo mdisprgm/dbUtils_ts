@@ -3,7 +3,7 @@ import { fsutil } from "bdsx/fsutil";
 import * as fs from "fs";
 import * as ini from "ini";
 import * as path from "path";
-import { SipmleJson as Json } from "./simpleJson";
+import { SimpleJson as Json } from "./simpleJson";
 
 let DATA_PATH = "./data";
 try {
@@ -43,7 +43,7 @@ export class SimpleDB<T = any> {
         this.data = Json.read(filePath);
     }
 
-    /** Changes {@link data} also, forcibly */
+    /** Changes {@link SimpleDB.prototype.data} also, forcibly */
     write(value: T): void {
         this.data = value;
         Json.write(this.fullPath, value);

@@ -2,7 +2,7 @@ import { red } from "colors";
 import * as fs from "fs";
 import * as path from "path";
 
-export namespace SipmleJson {
+export namespace SimpleJson {
     const FILE_EXT = ".json";
 
     export function formatPath(fullPath: string) {
