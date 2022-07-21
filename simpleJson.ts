@@ -31,7 +31,7 @@ export namespace SimpleJson {
                     //JSON을 분석할 수 없음
                     console.log("[JSON] Can't parse the JSON-string. it seems has incorrect json format. :" + filePath + ".json");
                     console.log("[JSON] let me try fix it."); //파일이 비어있으면 빈 JSON을 씀
-                    if (rf === "") fs.writeFileSync(filePath, "{}");
+                    if (rf === "") fs.writeFile(filePath, "{}", () => {});
                     else {
                         //비어있지 않으면 길이에 따라서 값을 출력함
                         console.log("[JSON] It's failed to fix the problem automatically. the file is not empty :", rf.length > 20 ? red("TOO LONG!!") : rf);
@@ -44,7 +44,7 @@ export namespace SimpleJson {
 
     export function write(filename: string, value: any): void {
         filename += FILE_EXT;
-        fs.writeFileSync(filename, JSON.stringify(value, null, 4), "utf8");
+        fs.writeFile(filename, JSON.stringify(value, null, 4), "utf8", () => {});
     }
 
     //** filepath === C:/Users/daniel/example.db (by GetDataDir)
@@ -69,7 +69,7 @@ export namespace SimpleJson {
 
         const dir = fs.readdirSync(dirname);
         if (!dir.includes(basename)) {
-            fs.writeFileSync(filepath, JSON.stringify(initValue, null, 4));
+            fs.writeFile(filepath, JSON.stringify(initValue, null, 4), "utf8", () => {});
             return true;
         }
         //already exists
